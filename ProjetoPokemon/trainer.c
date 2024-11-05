@@ -51,34 +51,39 @@ bool createTrainer(trainer t) {
     }
     
     trainerArrayPointer[trainerCount] = t;
-    //isn't this putting the trainer on the last spot, cause the index starts with 0?
     trainerCount++;
     return true;
 }
 
-bool updateTrainer(int index, trainer newTrainerData) {
-    if (index >= 0 && index < trainerCount) {
-        trainerArrayPointer[index] = newTrainerData;
-        return true;
-    }
-    return false;
+bool updateTrainer(trainer newTrainerData) {
+	int i;
+	for(i = 0; i < trainerCount; i++){
+		if (newTrainerData.trainerCode == trainerArrayPointer[i].trainerCode) {
+        	trainerArrayPointer[i] = newTrainerData;
+        	return true;
+    	}
+	}
+	return false;
+    
 }
 
-bool deleteTrainer(int index) {
-    if (index >= 0 && index < trainerCount) {
-        for (int i = index; i < trainerCount - 1; i++) {
-            trainerArrayPointer[i] = trainerArrayPointer[i + 1];
+bool deleteTrainer(int code) {
+	for(int i = 0; i < trainerCount - 1; i++){
+		
+		if(trainerArrayPointer[i]->trainerCode == code){
+			for (int i = index; i < trainerCount - 1; i++) {
+        		trainerArrayPointer[i] = trainerArrayPointer[i + 1];
+    		}
+    		trainerCount--;
+		}
+	}
+    
+    if (trainerCount < arraySize / 2 && arraySize > 5) {
+        arraySize /= 2;
+        trainer *newArray = (trainer*) realloc(trainerArrayPointer, arraySize * sizeof(trainer));
+        if (newArray != NULL) {
+            trainerArrayPointer = newArray;
         }
-        trainerCount--;
-        
-        if (trainerCount < arraySize / 2 && arraySize > 5) {
-            arraySize /= 2;
-            trainer *newArray = (trainer*) realloc(trainerArrayPointer, arraySize * sizeof(trainer));
-            if (newArray != NULL) {
-                trainerArrayPointer = newArray;
-            }
-        }
-        return true;
     }
-    return false;
+
 }

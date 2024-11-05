@@ -12,8 +12,8 @@ int trainerAmount();
 trainer* getTrainerByIndex(int index);
 
 bool createTrainer(trainer t);
-bool updateTrainer(int index, trainer newTrainerData);
-bool deleteTrainer(int index);
+bool updateTrainer(int code, trainer newTrainerData);
+bool deleteTrainer(int code);
 
 bool initializeTrainers();
 bool finishTrainers();

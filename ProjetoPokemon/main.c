@@ -11,15 +11,6 @@ int main(int argc, char *argv[]) {
 	
 	initializeTrainer();
 	
-	scanf("%d", &trainerArraySize);
-	
-	for(i = 0; i < trainerAmount(); i++){
-		trainer *tempPointer = getTrainerByIndex(i);
-		printf("%s", tempPointer->name);
-		printf("%d", tempPointer->bonusAtk);
-		printf("%d", tempPointer->bonusDef);		
-	}
-	
 	int menuCode, internalMenuCode;
 	while (menuCode != 0){
 		printf("Main menu: /n0. Exit \n1. Trainer \n2. Pokemon \n3. Gym \n4. Battle \n");
@@ -27,20 +18,29 @@ int main(int argc, char *argv[]) {
 		switch(menuCode){
 			case 1:
 				while(internalMenuCode != 0){
-					printf("Trainer menu: /n0. Exit \n1. List trainers \n2. Register a new trainer \n3. Update a trainer \n4. Delete trainer \n");
+					printf("Trainer menu: /n0. Exit \n1. List trainers \n2. Register a new trainer by their code \n3. Update a trainer by their code \n4. Delete trainer by their code \n");
 					scanf("%d", &internalMenuCode);
 					switch(internalMenuCode){
-						case 1: {
-                             }
-							
+						case 1:
+							for(i = 0; i < trainerAmount() - 1; i++){
+								trainer *tempPointer = getTrainerByIndex(i);
+								printf("%s \n%d \n%d \n", tempPointer->name, tempPointer->bonusAtk, tempPointer->bonusDef);
+							}
 							break;
 						
 						case 2:
-							//code
+							printf("Type the info of the trainer you want to register, in this order: name, bonus attack, bonus defense, and the code");
+							trainer *tempTrainer;
+							scanf("%s %d %d %d", &tempTrainer->name, &tempTrainer->bonusAtk, &tempTrainer->bonusDef, &tempTrainer->trainerCode);
+							createTrainer(tempTrainer);
 							break;
 						
 						case 3:
-							//code
+							printf("Type the code of the trainer you want to update\n");
+							scanf("%d", );
+							trainer *tempTrainer;
+							scanf("%s %d %d", &tempTrainer->name, &tempTrainer->bonusAtk, &tempTrainer->bonusDef);
+							createTrainer(tempTrainer);
 							break;
 						
 						case 4:

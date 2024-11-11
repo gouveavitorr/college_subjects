@@ -1,20 +1,28 @@
-struct Pokemon {
-	char name[20]
-	int life
-	int atk
-	int def
-	int trainerCode
-};
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
 
 typedef struct Pokemon pokemon;
 
-int pokemonAmount();
-pokemon* getPokemonByIndex(int index);
-
-bool createPokemon(trainer t);
-bool updatePokemon(int index, trainer newTrainerData);
-bool deletePokemon(int index);
+struct Pokemon {
+	char name[20];
+	int life;
+	int atk;
+	int def;
+	int trainerCode;
+};
 
 bool initializePokemons();
 bool finishPokemons();
+
+int pokemonAmount();
+int pokemonNameVerifier(char pokeName[]);
+pokemon* getPokemonByIndex(int index);
+
+
+bool createPokemon(pokemon* p);
+bool deletePokemon(int code);
+
+
 

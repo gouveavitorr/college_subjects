@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1730889844 source:c:\users\vitor\desktop\projetopokemon\battle.c
+
+1730889836 source:c:\users\vitor\desktop\projetopokemon\gym.c
+
+1731359173 source:c:\users\vitor\desktop\projetopokemon\pokemon.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	"pokemon.h"
+
+1731262713 source:c:\users\vitor\desktop\projetopokemon\trainer.c
+	"trainer.h"
+	<stdbool.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1730889708 c:\users\vitor\desktop\projetopokemon\trainer.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1731359236 source:c:\users\vitor\desktop\projetopokemon\main.c
+	"trainer.h"
+	<stdbool.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"pokemon.h"
+
+1731359166 c:\users\vitor\desktop\projetopokemon\pokemon.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+

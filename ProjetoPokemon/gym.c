@@ -9,11 +9,11 @@
 //int arraySize = 5;
 //
 //int gymAmount(){
-//
+//	
 //}
 //
 //pokemon* getGymByIndex(int index){
-//
+//	
 //}
 //
 //bool createGym(trainer t){

@@ -12,11 +12,11 @@ bool initializePokemons() {
     pokemonArrayPointer = (pokemon*) malloc(pokemonArraySize * sizeof(pokemon));
 
     if (pokemonArrayPointer != NULL) {
-        pokemon p0 = {"Chikorita", 109, 12, 12, 11};
-        pokemon p1 = {"Togepi", 81, 8, 8, 14};
-        pokemon p2 = {"Totodyle", 91, 15, 11, 11};
-        pokemon p3 = {"Treecko", 110, 9, 9, 13};
-        pokemon p4 = {"Chingling", 78, 9, 12, 13};
+        pokemon p0 = {1, "Chikorita", 109, 12, 12, 11};
+        pokemon p1 = {2, "Togepi", 81, 8, 8, 14};
+        pokemon p2 = {3, "Totodyle", 91, 15, 11, 11};
+        pokemon p3 = {4, "Treecko", 110, 9, 9, 13};
+        pokemon p4 = {5, "Chingling", 78, 9, 12, 13};
 
         pokemonArrayPointer[0] = p0;
         pokemonArrayPointer[1] = p1;
@@ -45,9 +45,19 @@ int pokemonAmount() {
     return pokemonCount;
 }
 
+bool pokeCodeVerifier(int code){
+	int i;
+  for (i = 0; i < pokemonCount; i++) {
+    if (code == pokemonArrayPointer[i].pokeCode) {
+      return true;
+    }
+  }
+  return false;
+}
+
 int pokemonNameVerifier(char pokeName[]){
     int i;
-    char namePlaceholder[20]; //fiz isso por conta do strlwr
+    char namePlaceholder[20];
     for(i = 0; i < pokemonCount; i++){
         strcpy(namePlaceholder, pokemonArrayPointer[i].name);
         if(!strcmp(strlwr(namePlaceholder), strlwr(pokeName))){
@@ -86,7 +96,7 @@ bool createPokemon(pokemon* p) {
 bool deletePokemon(int code) {
     int i;
     for (i = 0; i < pokemonCount - 1; i++) {
-        if (pokemonArrayPointer[i].trainerCode == code) {
+        if (pokemonArrayPointer[i].pokeCode == code) {
             int j;
             for (j = i; j < pokemonCount - 1; j++) {
                 pokemonArrayPointer[j] = pokemonArrayPointer[j + 1];

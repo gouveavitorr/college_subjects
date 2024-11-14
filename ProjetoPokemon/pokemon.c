@@ -95,10 +95,10 @@ bool createPokemon(pokemon* p) {
 
 bool deletePokemon(int code) {
     int i;
-    for (i = 0; i < pokemonCount - 1; i++) {
+    for (i = 0; i < pokemonCount; i++) {
         if (pokemonArrayPointer[i].pokeCode == code) {
             int j;
-            for (j = i; j < pokemonCount - 1; j++) {
+            for (j = i; j < pokemonCount; j++) {
                 pokemonArrayPointer[j] = pokemonArrayPointer[j + 1];
             }
             pokemonCount--;

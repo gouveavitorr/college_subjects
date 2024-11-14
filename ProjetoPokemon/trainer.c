@@ -92,11 +92,11 @@ bool updateTrainer(trainer* newTrainerData) {
 
 bool deleteTrainer(int code) {
      int i;
-  for (i = 0; i < trainerCount - 1; i++) {
+  for (i = 0; i < trainerCount; i++) {
 
     if (trainerArrayPointer[i].trainerCode == code) {
        int j;
-      for (j = i; j < trainerCount - 1; j++) {
+      for (j = i; j < trainerCount; j++) {
         trainerArrayPointer[j] = trainerArrayPointer[j + 1];
       }
       trainerCount--;

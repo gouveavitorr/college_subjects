@@ -4,15 +4,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include "pokemon.h"
-//#include "gym.h"
+#include "gym.h"
 //#include "battle.h"
 
 void subMenuTrainers()
 {
-	
+
 	int internalMenuCode = 1;
 	while (internalMenuCode != 0) {
-		printf("Trainer menu: \n0. Exit \n1. List trainers \n2. Register a new "
+		printf("\nTrainer menu: \n0. Exit \n1. List trainers \n2. Register a new "
 		"trainer by their code \n3. Update a trainer by their code \n4. "
 		"Delete trainer by their code \n");
 		scanf("%d", &internalMenuCode);
@@ -27,7 +27,7 @@ void subMenuTrainers()
 				}
 				break;
 			}
-	
+
 			case 2: {
 				printf("Type the info of the trainer you want to register, in this "
 					"order: code, name, bAttack, and bDefense\n");
@@ -44,7 +44,7 @@ void subMenuTrainers()
 				free(tempTrainer);
 				break;
 			}
-	
+
 			case 3: {
 				int trainerTestCode;
 				trainer *tempTrainer = (trainer*) malloc(sizeof(trainer));
@@ -53,13 +53,13 @@ void subMenuTrainers()
 				if (codeVerifier(trainerTestCode)) {
 					printf("Type the info you want to update, in this "
 					"order: code, name, bonus attack, bonus defense\n");
-					
+
 					scanf("%d %s %d %d", &tempTrainer->trainerCode, tempTrainer->name, &tempTrainer->bonusAtk, &tempTrainer->bonusDef);
 					if(updateTrainer(tempTrainer)){
-						printf("Trainer updated successfully.");
-					} else printf("Problem updating the trainer.");
+						printf("Trainer updated successfully.\n");
+					} else printf("Problem updating the trainer.\n");
 				} else {
-					printf("Invalid trainer code.");
+					printf("Invalid trainer code.\n");
 				}
 				free(tempTrainer);
 				break;
@@ -70,9 +70,9 @@ void subMenuTrainers()
 				scanf("%d", &code);
 				if (codeVerifier(code)) {
 					deleteTrainer(code);
-					printf("Trainer deleted successfully.");
+					printf("Trainer deleted successfully.\n");
 				} else {
-					printf("Invalid trainer code.");
+					printf("Invalid trainer code.\n");
 				}
 				break;
 			}
@@ -84,7 +84,7 @@ void subMenuPokemons()
 {
 	int internalMenuCode = -1;
       while (internalMenuCode != 0) {
-        printf("Pokemon menu: \n0. Exit \n1. List pokemon \n2. Register pokemon by trainer code \n3. Search pokemon by name \n4. Delete pokemon by code \n");
+        printf("\nPokemon menu: \n0. Exit \n1. List pokemon \n2. Register pokemon by trainer code \n3. Search pokemon by name \n4. Delete pokemon by code \n");
         scanf("%d", &internalMenuCode);
         switch (internalMenuCode) {
         case 1: {
@@ -109,7 +109,7 @@ void subMenuPokemons()
             if(createPokemon(tempPokemon)){
                 printf("Pokemon successfully created!\n");
             } else {
-                printf("There was a problem when creating this pokemon. Try again later.");
+                printf("There was a problem when creating this pokemon. Try again later.\n");
             }
           } else {
               printf("This pokemon code already exists.\n");
@@ -141,13 +141,13 @@ void subMenuPokemons()
           	printf("Type the code of the pokemon you want to delete.\n");
           	scanf("%d", &pokemonTestCode);
           	if (!pokeCodeVerifier(pokemonTestCode)) {
-				printf("This code is not related to any pokemon.");  
+				printf("This code is not related to any pokemon.\n");
 			} else {
 				deletePokemon(pokemonTestCode);
 			}
 			break;
 		}
-    }		
+    }
 }
 }
 
@@ -155,17 +155,17 @@ void subMenuGyms()
 {
 	int internalMenuCode = -1;
 	while (internalMenuCode != 0) {
-        printf("Gym menu:\n0. Exit\n1. List gyms\n2. Register gym by code\n3. "
+        printf("\nGym menu:\n0. Exit\n1. List gyms\n2. Register gym by code\n3. "
                "Search gym by neighborhood\n4. Delete gym by code\n");
         scanf("%d", &internalMenuCode);
-      }	
+      }
 }
 
 void subMenuBattles()
 {
 	int internalMenuCode = -1;
 	while (internalMenuCode != 0) {
-        printf("Battle menu:\n0. Exit\n1. List trainer battles\n2. List gym battles\n3. Battle\n4. Search for a trainer's victories and defeats\n");
+        printf("\nBattle menu:\n0. Exit\n1. List trainer battles\n2. List gym battles\n3. Battle\n4. Search for a trainer's victories and defeats\n");
         scanf("%d", &internalMenuCode);
 		}
 }
@@ -178,7 +178,7 @@ int main() {
 
   int menuCode = -1;
   while (menuCode != 0) {
-    printf("Main menu: \n0. Exit \n1. Trainer \n2. Pokemon \n3. Gym \n4.Battle \n");
+    printf("\nMain menu: \n0. Exit \n1. Trainer \n2. Pokemon \n3. Gym \n4.Battle \n");
     scanf("%d", &menuCode);
     switch (menuCode) {
     case 1:

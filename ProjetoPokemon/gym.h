@@ -1,22 +1,25 @@
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <string.h>
-//#include <stdbool.h>
-//
-//struct Gym {
-//	char name[55];
-//	int capacity;
-//	char neighborhood[55];
-//};
-//
-//typedef struct Gym gym;
-//
-//int gymAmount();
-//pokemon* getGymByIndex(int index);
-//
-//bool createGym(trainer t);
-//bool updateGym(int index, trainer newTrainerData);
-//bool deleteGym(int index);
-//
-//bool initializeGyms();
-//bool finishGyms();
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+
+struct Gym {
+    int gymCode;
+	char name[30];
+	int capacity;
+	char neighborhood[30];
+};
+
+typedef struct Gym gym;
+
+int gymAmount();
+bool gymCodeVerifier(int code);
+int gymNbhoodVerifier(char nbhood[]);
+
+gym* getGymByIndex(int index);
+
+bool createGym(gym* g);
+bool deleteGym(int code);
+
+bool initializeGyms();
+bool finishGyms();

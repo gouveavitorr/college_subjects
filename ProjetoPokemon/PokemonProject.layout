@@ -2,19 +2,24 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="default" />
-	<File name="trainer.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="205" topLine="0" />
+			<Cursor1 position="16223" topLine="19" />
+		</Cursor>
+		<Folding>
+			<Collapse line="10" />
+			<Collapse line="83" />
+			<Collapse line="154" />
+		</Folding>
+	</File>
+	<File name="gym.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="331" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="pokemon.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="gym.c" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2807" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="gym.c" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="643" topLine="0" />
+			<Cursor1 position="938" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="pokemon.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="692" zoom_1="0" zoom_2="0">
@@ -22,23 +27,29 @@
 			<Cursor1 position="331" topLine="0" />
 		</Cursor>
 	</File>
+	<File name="trainer.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="205" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="battle.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1577" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="pokemon.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2438" topLine="72" />
+		</Cursor>
+	</File>
 	<File name="trainer.c" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="2172" topLine="72" />
 		</Cursor>
 	</File>
-	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="battle.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2603" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="10" />
-			<Collapse line="83" />
-		</Folding>
-	</File>
-	<File name="gym.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="331" topLine="0" />
+			<Cursor1 position="420" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

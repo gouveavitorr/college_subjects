@@ -44,15 +44,36 @@ int gymAmount(){
 }
 
 bool gymCodeVerifier(int code){
-
+    int i;
+    for(i = 0; i < gymCount; i++){
+        if(gymArrayPointer[i].gymCode == code){
+            return true;
+        }
+    }
+    return false;
 }
 
 int gymNbhoodVerifier(char nbhood[]){
-
+    int i;
+    char namePlaceholder[20];
+    for(i = 0; i < gymCount; i++){
+        strcpy(namePlaceholder, gymArrayPointer[i].neighborhood);
+        if(!strcmp(strlwr(namePlaceholder), strlwr(nbhood))){
+            return i;
+        }
+    }
+    return -1;
 }
 
 gym* getGymByIndex(int index){
-
+    if(index >= 0 && index < gymCount){
+        gym* tempGym = (gym*) malloc(sizeof(gym));
+        if(tempGym){
+            *tempGym = gymArrayPointer[index];
+            return tempGym;
+        }
+    }
+    return NULL;
 }
 
 bool createGym(gym* g){

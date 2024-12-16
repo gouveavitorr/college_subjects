@@ -6,33 +6,39 @@
 
 #define FILE_NAME "pokemons.bin"
 
-FILE* file = NULL;
+FILE* pokemonFile = NULL;
 
 bool initializePokemons() {
-    file = fopen(FILE_NAME, "a+b");
-    return file != NULL;
+    pokemonFile = fopen(FILE_NAME, "a+b");
+    return pokemonFile != NULL;
 }
 
 bool finishPokemons() {
-    if (file) {
-        fclose(file);
-        file = NULL;
+    if (pokemonFile) {
+        fclose(pokemonFile);
+        pokemonFile = NULL;
         return true;
     }
     return false;
 }
 
 int pokemonAmount() {
-    if (!file) return 0;
-    fseek(file, 0, SEEK_END);
-    return ftell(file) / sizeof(pokemon);
+
+    long fileSize;
+
+    if (!pokemonFile) return 0;
+    fseek(pokemonFile, 0, SEEK_END);
+
+    fileSize = ftell(pokemonFile);
+    return fileSize / sizeof(pokemon);
 }
 
 bool pokeCodeVerifier(int code) {
-    if (!file) return false;
+
     pokemon tempPokemon;
-    rewind(file);
-    while (fread(&tempPokemon, sizeof(pokemon), 1, file) == 1) {
+    fseek(pokemonFile, 0, SEEK_SET);
+
+    while (fread(&tempPokemon, sizeof(pokemon), 1, pokemonFile) == 1) {
         if (tempPokemon.pokeCode == code) {
             return true;
         }
@@ -41,25 +47,26 @@ bool pokeCodeVerifier(int code) {
 }
 
 int pokemonNameVerifier(char pokeName[]) {
-    if (!file) return -1;
+
     pokemon tempPokemon;
     char namePlaceholder[20];
-    rewind(file);
-    while (fread(&tempPokemon, sizeof(pokemon), 1, file) == 1) {
+    fseek(pokemonFile, 0, SEEK_SET);
+
+    while (fread(&tempPokemon, sizeof(pokemon), 1, pokemonFile) == 1) {
         strcpy(namePlaceholder, tempPokemon.name);
         if (!strcmp(strlwr(namePlaceholder), strlwr(pokeName))) {
-            return ftell(file) / sizeof(pokemon) - 1;
+            return ftell(pokemonFile) / sizeof(pokemon) - 1;
         }
     }
     return -1;
 }
 
 pokemon* getPokemonByIndex(int index) {
-    if (!file) return NULL;
+
     pokemon* tempPokemon = (pokemon*) malloc(sizeof(pokemon));
-    if (!tempPokemon) return NULL;
-    fseek(file, index * sizeof(pokemon), SEEK_SET);
-    if (fread(tempPokemon, sizeof(pokemon), 1, file) != 1) {
+
+    fseek(pokemonFile, index * sizeof(pokemon), SEEK_SET);
+    if (fread(tempPokemon, sizeof(pokemon), 1, pokemonFile) != 1) {
         free(tempPokemon);
         return NULL;
     }
@@ -67,19 +74,20 @@ pokemon* getPokemonByIndex(int index) {
 }
 
 bool createPokemon(pokemon* p) {
-    if (!file) return false;
-    fseek(file, 0, SEEK_END);
-    return fwrite(p, sizeof(pokemon), 1, file) == 1;
+
+    fseek(pokemonFile, 0, SEEK_END);
+    return fwrite(p, sizeof(pokemon), 1, pokemonFile) == 1;
 }
 
 bool deletePokemon(int code) {
-    if (!file) return false;
+
     FILE* tempFile = fopen("temp.bin", "wb");
-    if (!tempFile) return false;
+
     pokemon tempPokemon;
     bool found = false;
-    rewind(file);
-    while (fread(&tempPokemon, sizeof(pokemon), 1, file) == 1) {
+    fseek(pokemonFile, 0, SEEK_SET);
+
+    while (fread(&tempPokemon, sizeof(pokemon), 1, pokemonFile) == 1) {
         if (tempPokemon.pokeCode != code) {
             fwrite(&tempPokemon, sizeof(pokemon), 1, tempFile);
         } else {
@@ -90,7 +98,7 @@ bool deletePokemon(int code) {
     if (found) {
         remove(FILE_NAME);
         rename("temp.bin", FILE_NAME);
-        file = fopen(FILE_NAME, "a+b");
+        pokemonFile = fopen(FILE_NAME, "a+b");
     } else {
         remove("temp.bin");
     }

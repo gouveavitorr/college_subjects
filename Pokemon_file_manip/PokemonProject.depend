@@ -59,3 +59,65 @@
 	<string.h>
 	<stdbool.h>
 
+1731965964 source:c:\users\vitor\desktop\pokemon_file_manip\battle.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	"battle.h"
+
+1731965964 c:\users\vitor\desktop\pokemon_file_manip\battle.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1731965964 source:c:\users\vitor\desktop\pokemon_file_manip\gym.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	"gym.h"
+
+1731965964 c:\users\vitor\desktop\pokemon_file_manip\gym.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1731965964 source:c:\users\vitor\desktop\pokemon_file_manip\main.c
+	"trainer.h"
+	<stdbool.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"pokemon.h"
+	"gym.h"
+	"battle.h"
+
+1731965964 c:\users\vitor\desktop\pokemon_file_manip\trainer.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1731965964 c:\users\vitor\desktop\pokemon_file_manip\pokemon.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1733772295 source:c:\users\vitor\desktop\pokemon_file_manip\pokemon.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	"pokemon.h"
+
+1734380482 source:c:\users\vitor\desktop\pokemon_file_manip\trainer.c
+	"trainer.h"
+	<stdbool.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

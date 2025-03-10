@@ -2,25 +2,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-Stack* stackArrayPointer = NULL;
-int* intStackPointer = NULL;
+Stack* create_stack(int size){
+    Stack* stackArrayPointer = (Stack*)malloc(sizeof(Stack));
+    stackArrayPointer->top = -1;
+    stackArrayPointer->size = size;
+    stackArrayPointer->vector = (int*) malloc(size * sizeof(int));
 
-int create_stack(int size){
-    stackArrayPointer = (Stack*) malloc(1 * sizeof(Stack));
-    intStackPointer = (int) malloc(size * sizeof(int));
-    stackArrayPointer.vector = intStackPointer;
+    return stackArrayPointer;
+}
 
-    if(stackArrayPointer){
-      return 1;
+bool push(Stack* stack, int value){
+    if(full(stack)){
+        return false;
     }else{
-        return 0;
+        stack->top++;
+        stack->vector[stack->top] = value;
+        return true;
     }
 }
 
-void push(Stack* stack, int item){
+bool pop(Stack* stack, int* value){
+    if(empty(stack)){
+        return false;
+    }else{
+        *value = stack->vector[stack->top];
+        stack->top--;
+        return true;
+    }
+}
+
+bool empty(Stack* stack){
+    if(stack->top == -1){
+        return true;
+    }return false;
 
 }
 
-int pop(Stack* stack){
-
+bool full(Stack* stack){
+    if(stack->top == (stack->size-1)){
+        return true;
+    }return false;
 }

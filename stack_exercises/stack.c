@@ -4,7 +4,7 @@
 
 Stack* create_stack(int size){
     Stack* stackArrayPointer = (Stack*)malloc(sizeof(Stack));
-    stackArrayPointer->top = -1;
+    stackArrayPointer->top = 0;
     stackArrayPointer->size = size;
     stackArrayPointer->vector = (int*) malloc(size * sizeof(int));
 
@@ -32,14 +32,14 @@ bool pop(Stack* stack, int* value){
 }
 
 bool empty(Stack* stack){
-    if(stack->top == -1){
+    if(stack->top == 0){
         return true;
     }return false;
 
 }
 
 bool full(Stack* stack){
-    if(stack->top == (stack->size-1)){
+    if(stack->top == (stack->size)){
         return true;
     }return false;
 }

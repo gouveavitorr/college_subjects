@@ -15,3 +15,6 @@ void InsertionSort(int* input, int length){
     }
 }
 ```
+
+Observations:
+- Shortsighted: creates a new array to the left, which has to be rechecked every time we pick a new element.

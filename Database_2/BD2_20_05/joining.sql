@@ -84,19 +84,48 @@ SELECT d.coddepartamento, d.nome, COALESCE(SUM(i.quantidade * i.precounitvenda),
 	ORDER BY "Total em vendas" DESC;
 	
 --i. Sobre os clientes que são funcionários mostrar o nome, o total em vendas realizadas (R$) e o total em compras realizadas (R$)
-SELECT f.nome, COALESCE(SUM(i.precounitvenda * i.quantidade), 0) "TotalVendas"--, COALESCE(SUM(precocompra * compraqtd), 0) "TotalCompras"
-	FROM cliente c
-	INNER JOIN funcionario f
-	ON c.cpf = f.cpf
-	JOIN notafiscal n
-	ON f.codfuncionario = n.codfuncionario OR c.codcliente = n.codcliente
-	JOIN itemvenda i
-	ON i.codnotafiscal = n.codnotafiscal
-	GROUP BY f.codfuncionario
-	ORDER BY f.codfuncionario DESC;
-	--fazer dois selects
+WITH clientes AS (
+
+	SELECT c.nome cliente_nome, c.cpf, COALESCE(SUM(i.precounitvenda * i.quantidade), 0) "TotalVendido"--, COALESCE(SUM(precocompra * compraqtd), 0) "TotalCompras"
+		FROM cliente c
+		INNER JOIN notafiscal n ON c.codcliente = n.codcliente
+		RIGHT JOIN itemvenda i ON i.codnotafiscal = n.codnotafiscal
+		GROUP BY c.codcliente
+
+),
+
+funcionarios AS (
+	SELECT f.nome funcionario, f.cpf, COALESCE(SUM(i.precounitvenda * i.quantidade), 0) "TotalComprado"
+		FROM funcionario f
+		INNER JOIN notafiscal n ON f.codfuncionario = n.codfuncionario
+		RIGHT JOIN itemvenda i ON i.codnotafiscal = n.codnotafiscal
+		GROUP BY f.codfuncionario
+)
+
+SELECT clientes.cliente_nome nome, funcionarios."TotalVendido", clientes."TotalComprado"
+	FROM funcionarios
+	INNER JOIN clientes USING (cpf);
 
 --j. O nome e a média em compras (R$) para os clientes que compraram em média acima de R$30 em cada compra.
-SELECT c.nome, AVG(SELECT  )
+WITH notas AS (
+	SELECT nf.*, SUM(iv.quantidade * iv.precounitvenda ) AS total_nota
+		FROM itemvenda iv
+		INNER JOIN notafiscal nf ON iv.codnotafiscal = nf.codnotafiscal
+		GROUP BY nf.codnotafiscal
+		ORDER BY nf.codcliente
+	)
+SELECT notas.codcliente, AVG(total_nota) avg_nota
+	FROM notas INNER JOIN cliente c ON c.codcliente = notas.codcliente
+	GROUP BY c.codcliente
+	HAVING avg_nota > 30
+
+--where filtra antes de agrupar e having filtra depois de agrupar
 
 --k. Nome do cliente, do funcionário e o total da compra para vendas realizadas no último mês.
+SELECT c.nome, f.nome, nf.*, SUM(iv.quantidade * iv.precounitvenda) AS total_nota
+	FROM itemvenda iv
+		INNER JOIN notafiscal nf ON iv.codnotafiscal = nf.codnotafiscal
+		INNER JOIN funcionario f ON f.codfuncionario = nf.codfuncionario
+		INNER JOIN cliente c ON c.codcliente = nf.codcliente
+	WHERE datavenda > (current_date - interval '30 days')
+	GROUP BY nf.codnotafiscal, c.nome, f.nome;

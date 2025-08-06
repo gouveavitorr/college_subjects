@@ -1,1 +1,1 @@
-# study_projects
+# college_subjects

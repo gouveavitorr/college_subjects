@@ -1,18 +1,23 @@
 package entity.demo.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Product {
+
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
     private double price;
 
-    public Product(){
-        this.id = null;
-        this.name = "";
-        this.price = 0;
+    protected Product(){
     }
 
-    public Product(long id, String name, double price){
-        this.id = id;
+    public Product(String name, double price){
         this.name = name;
         this.price = price;
     }

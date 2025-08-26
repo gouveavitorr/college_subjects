@@ -1,0 +1,36 @@
+package org.example;
+
+import java.sql.*;
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connection = DriverManager.getConnection
+                    ("jdbc:mysql://107.161.183.247/humbertomo_aula",
+                            "humbertomo_aula",
+                            "Aula01Aula01!");
+//            PreparedStatement st = connection.prepareStatement("insert into Cliente values(null, ?, ?)");
+//            st.setString(1, "正直");
+//            st.setInt(2, 222);
+//            st.executeUpdate();
+            PreparedStatement st = connection.prepareStatement("select * from Cliente");
+
+            ResultSet rs = st.executeQuery();
+
+            while(rs.next()){
+                System.out.println("ID: " + rs.getInt("id"));
+                System.out.println("Name: " + rs.getString("Nome"));
+                System.out.println("Age: " + rs.getInt("Idade"));
+                System.out.println("----------------");
+            }
+
+            connection.close();
+
+        } catch (ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}

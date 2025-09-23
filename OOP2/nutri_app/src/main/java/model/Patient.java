@@ -1,25 +1,30 @@
 package model;
 
-public class Patient implements Person{
+import observer.Observer;
+import observer.Subject;
+
+import java.util.ArrayList;
+
+public class Patient implements Person, Subject<Patient> {
     private String name;
     private double weight;
-    private Doctor doctor;
+    private ArrayList<Doctor> doctors = new ArrayList<>();
 
-    public Patient(String name, double weight, Doctor doctor) {
+    public Patient(String name, double weight, Doctor doctors) {
         this.name = name;
         this.weight = weight;
-        this.doctor = doctor;
+        this.doctors.add(doctors);
     }
 
     public void eat(Food food){
         this.weight += food.getWeight();
-        checkHealth(this.getWeight(), this);
-        System.out.println("I just ate a " + " of " + food.getWeight() + "g :)");
+        checkHealth();
+        System.out.println("I just ate a " + food.getClass().getName() + " of " + food.getWeight() + "g :)");
     }
 
-    private void checkHealth(double weight, Patient p){
-        if(weight > 100){
-            doctor.makeAppointment(p);
+    private void checkHealth(){
+        if(this.weight > 100){
+            notifyDoctors();
         }
     }
 
@@ -42,5 +47,27 @@ public class Patient implements Person{
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public void addDoctor(Observer o) {
+        this.doctors.add((Doctor) o);
+    }
+
+    @Override
+    public void removeDoctor(Observer o) {
+        this.doctors.remove((Doctor) o);
+    }
+
+    @Override
+    public void notifyDoctors() {
+        for(Doctor d : this.doctors){
+            d.makeAppointment();
+        }
+    }
+
+    @Override
+    public Patient getCurrentWeight() {
+        return this;
     }
 }

@@ -1,14 +1,15 @@
 package model;
 
-public class Doctor implements Person {
+import observer.Observer;
+import observer.Subject;
+
+public class Doctor implements Person, Observer {
     private String name;
+    private String specialty;
+    private Patient patient;
 
     public Doctor(String name){
         this.name = name;
-    }
-
-    public void makeAppointment(Patient patient){
-        System.out.println(patient.getName() + "has a new appointment with Dr." + this.name);
     }
 
     @Override
@@ -22,5 +23,15 @@ public class Doctor implements Person {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public void makeAppointment() {
+        System.out.println("Doctor" + this.name + " calling patient " + this.patient.getName());
+    }
+
+    @Override
+    public void setSubject(Subject s) {
+        this.patient = (Patient) s;
     }
 }

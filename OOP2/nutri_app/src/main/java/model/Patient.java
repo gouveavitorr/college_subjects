@@ -1,5 +1,6 @@
 package model;
 
+import dailyMeal.DailyMeal;
 import observer.Observer;
 import observer.Subject;
 
@@ -16,10 +17,11 @@ public class Patient implements Person, Subject<Patient> {
         this.doctors.add(doctors);
     }
 
-    public void eat(Food food){
-        this.weight += food.getWeight();
+    public void eat(Meal meal){
+        double value = meal.getNutritionalValue().getEnergyValue() / 100;
+        value / this.weight;
         checkHealth();
-        System.out.println("I just ate a " + food.getClass().getName() + " of " + food.getWeight() + "g :)");
+        System.out.println("I just had a " + meal.getClass().getSimpleName() + " :)");
     }
 
     private void checkHealth(){
